@@ -1,6 +1,10 @@
 import './App.css';
 import {useQuery, gql , useMutation} from "@apollo/client";
 import React,{useCallback , useState} from 'react';
+
+
+
+// Câu lệnh truy vấn tới máy chủ GraphQL yêu cầu hiển thị dữ liệu
 const GET_DATA = gql`
   query {
     todos {
@@ -10,6 +14,8 @@ const GET_DATA = gql`
   }
 `;
 
+
+// Câu lệnh truy vấn tới máy chủ GraphQL yêu cầu thêm dữ liệu
 const ADD_TODO = gql`
   mutation AddTodo($type: String!){
     addTodo(type: $type){
@@ -19,6 +25,8 @@ const ADD_TODO = gql`
   }
 `;
 
+
+// Câu lệnh truy vấn tới máy chủ GraphQL yêu cầu cập nhật dữ liệu
 const UPDATE_TODO = gql`
   mutation UpdateTodo($id : String! , $type : String!){
     updateTodo(id: $id , type: $type){
@@ -28,6 +36,7 @@ const UPDATE_TODO = gql`
   }
 `;
 
+// handle Cập nhật dữ liệu
 function App_Update(){
   const [updateTodo] = useMutation(UPDATE_TODO);
   const {loading , error , data} = useQuery(GET_DATA);
@@ -47,7 +56,7 @@ function App_Update(){
         )
     })
   }
-
+// handle thêm mới todo
 function Add_todos(){
   const [inputs, setinput] = useState({});
   const [addTodo] = useMutation(ADD_TODO,{
