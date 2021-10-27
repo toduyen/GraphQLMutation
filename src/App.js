@@ -56,6 +56,10 @@ function App_Update(){
         )
     })
   }
+  
+  
+  
+  
 // handle thêm mới todo
 function Add_todos(){
   const [inputs, setinput] = useState({});
